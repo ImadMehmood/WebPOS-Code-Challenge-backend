@@ -1,11 +1,12 @@
 const express = require("express");
-const { responseCode } = require("./src/constants/responseCodeConstants");
+const responseCode = require("./src/constants/responseCodeConstants");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const helmet = require("helmet");
-const { responseHandle } = require("./src/helpers/responseHandler");
+const responseHandle = require("./src/helpers/responseHandler");
 const userRoute = require("./src/routes/userRoute");
+require("dotenv").config();
 
 app.use(helmet());
 app.use((req, res, next) => {
@@ -24,7 +25,7 @@ app.use(cors());
 app.use("/api/user", userRoute);
 
 app.all("*", (req, res, next) => {
-  return responseHandle.responseWithError(
+  responseHandle.responseWithError(
     res,
     responseCode.NOT_FOUND,
     "Route not found"
