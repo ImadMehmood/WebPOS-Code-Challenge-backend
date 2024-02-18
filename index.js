@@ -8,11 +8,10 @@ const isProduction = process.env.NODE_ENV == "production" ? true : false;
 app.use((err, req, res, next) => {
   return res.status(500).json({
     message: "Internal Server Error",
-    error: isProduction ? null : err,
+    error: err,
   });
 });
 const PORT = process.env.PORT || 5000;
-console.log(process.env.DATABASE_URL);
 
 app.listen(PORT, () => {
   console.log(`server is running at PORT ${PORT}`);

@@ -28,7 +28,6 @@ const _getCurrentDateTimeInFormat = () => {
  */
 const login = async (body) => {
   try {
-    console.log(body);
     const headers = {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -41,10 +40,8 @@ const login = async (body) => {
         headers: headers,
       }
     );
-    console.log(response.data);
     return response;
   } catch (error) {
-    console.log(error);
     throw new Error(error);
   }
 };
